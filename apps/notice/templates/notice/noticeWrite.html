@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{% block title %}
+<title>공지 사항</title>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<script src = "{% static 'notice/js/notice.js' %}"></script>
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-2">
+        <div class="row g-5 pt-5">
+            <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                <h1 class="display-4 text-white mb-4">공지 사항</h1>
+                <p class='text-white'>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>공지 사항 입력</strong>
+        <form id="notice-form" method="POST" action="/main/notice/write/submit/">
+            {% csrf_token %}
+            <div class="board_write_wrap">
+                <div class="board_write">
+                    <div class="title">
+                        <dl>
+                            <dt>제목</dt>
+                            <dd><input type="text" name="title" id="title" placeholder="제목 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="info"></div>
+                    <div class="cont">
+                        <textarea name="content" id="content" placeholder="내용 입력"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <button id = "notice-write" type="submit" ><a class="on">등록</a></button>
+                <a href="/main/notice/">취소</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

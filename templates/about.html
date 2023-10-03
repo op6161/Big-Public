@@ -1,0 +1,283 @@
+{% extends 'base.html'%}
+
+{% block title %}
+<title>About</title>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+    <!-- Hero Start -->
+    <div class="container-fluid pt-5 bg-primary hero-header">
+        <div class="container pt-5">
+            <div class="row g-5 pt-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">About Us</h1>
+                    <p class='text-white'> 저희 프로젝트에 대해서 소개합니다</p>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="img/hero-img.png" alt="" style="max-height: 300px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+   
+    <!-- About Start -->
+    <div id="about_c" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#about_c" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#about_c" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#about_c" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#about_c" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container-fluid py-5">
+                <div class="container py-5">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="">
+                                <img class="img-fluid" src="{% static '/img/about_1.png' %}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 class="mb-4">선정 배경</h1>
+                            <h5><p class="mb-4">
+                                현재 많은 국사들이 무인 시스템으로 운영되고 있지만, 이들은 주로 센서에 의존하여 관리되고 있습니다.                                
+                            </p>
+                            <p class="mb-4">
+                                그러나 센서의 불안정한 동작으로 인해 여러 문제가 발생하고 있으며, 이에 대한 대응 방안이 부재하고 있습니다. 
+                            </p>
+                            <p class="mb-4">
+                                이러한 상황에서 우리는 인공지능 모델을 도입하여 센서의 오작동 문제를 해결하고, 신뢰할 수 있는 안전 시스템을 구축하여 국사 운영에 대한 다양한 문제점을 해결하고자 합니다.
+                            </p>
+                            <p class="mb-4">
+                                우리의 목표는 안전과 효율성을 동시에 확보하여 더 나은 국사 운영 환경을 조성하는 것입니다.
+                            </p>
+                        </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container-fluid py-5">
+                <div class="container py-5">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="">
+                                <img class="img-fluid" src="{% static '/img/KT_ANYANG.jpg' %}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 class="mb-4">국사 내부의 화재&연기 감지</h1>
+                            <h5>
+                            <p class="mb-4">국사 내부의 화재 감시는 오로지 화재센서에 의존하여 관리되고 있습니다.</p>
+                            <p class="mb-4">
+                                하지만 센서의 미세한 오작동으로 화재로 인식되어 잘못 출동하는 경우가 매우 많아, 적지않은 비용이 발생하고 있습니다.
+                            </p>
+                            <p class="mb-4">
+                                우리는 인공지능 모델을 활용하여 센서에서 화재가 인식될 시 영상 판독을 통해 화재, 연기가 발생하는지 
+                                아닌지 구분하여 화재가 맞다고 인식될 시 출동 알림을 가게 하는 시스템을 만들었습니다.
+                            </p>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container-fluid py-5">
+                <div class="container py-5">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="">
+                                <img class="img-fluid" src="{% static '/img/worker.png' %}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 class="mb-4">작업자 안전복장점검, 사고 감시 시스템</h1>
+                            <h5>
+                            <p class="mb-4">중대재해처벌법 등으로 인해 작업자가 안전복장을 제대로 착용하고 작업하는 것이 
+                                매우 중요한 사항이 되었습니다.</p>
+                            <p class="mb-4">저희는 작업자가 국사 내부에 들어왔을 시, 안전모, 안전복, 안전화 등을 제대로 갖추고 
+                                들어왔는지 확인하고 미 착용시 기록을 하여 작업자가 제대로 된 안전복장을 착용하도록 하는 시스템을 만들었습니다
+                            </p>
+                            <p class="mb-4">또한 인명피해가 발생해 작업자가 수 초 이상 움직임이 없을 시, 즉시 알림을 통하여 
+                                빠르게 119를 투입할 수 있는 시스템을 만들어 보았습니다.</p>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container-fluid py-5">
+                <div class="container py-5">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="about-img">
+                                <img class="img-fluid" src="{% static '/img/security_camera.png' %}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 class="mb-4">작업자 방문예정시간 외 침입자 탐지 시스템</h1>
+                            <h5>
+                            <p class="mb-4">국사는 허가받지 않는 사람은 접근이 제한된 장소이기 때문에 침입자를 확인하고 
+                                접근하지 못하게 하는 것이 중요합니다.</p>
+                            <p class="mb-4">저희는 사전 승인된 작업자가 방문이 예정된 시간을 제외하고 침입자가 외부 CCTV에 확인될 시 경고 알림을 보내는 시스템입니다
+                            </p>                            
+                            <p class="mb-4">CCTV에 원하는 범위를 지정하여 범위 내에 사람이 들어왔을 때 알람을 주는 방식을 도입했습니다.
+                            </p>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#about_c" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#about_c  " data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+    </div>    
+    <!-- About End -->
+
+
+    <!-- NextStep Start -->
+    <div class="container-fluid bg-primary feature pt-5">
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-6 align-self-center mb-md-5 pb-md-5 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">연구과제</div>
+                    <h1 class="text-white mb-4">추후 발전 가능성</h1>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>업로드 방식이 아닌, 실시간 영상을 바로 분석 할 수 있는 시스템</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>화재 / 연기 뿐만 아니라 스파크도 탐지할 수 있는 모델 제작</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>온도를 통한 잔여 수명 예측 솔루션 제공</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>-</span>
+                    </div>
+                    <div class="d-flex align-items-center text-white mb-3">
+                        <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <span>-</span>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-md-end wow fadeIn" data-wow-delay="0.5s">
+                    <img class="img-fluid" src="img/feature.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid bg-light py-5">
+        <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Our Team</div>
+            <h1 class="mb-4">35조 구성원을 소개합니다.</h1>
+            <!--<p class="mb-4">구성원 소개 넣기</p> -->
+        </div>
+        <div class="container py-5">
+            <div>
+                <div class="col-lg-12">
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_1.png' %}" alt="">
+                                        <h5 class="mb-0">이길원</h5>
+                                        <small>조장 & FE</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_2.png' %}" alt="">
+                                        <h5 class="mb-0">이근섭</h5>
+                                        <small>AI</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 pt-md-4">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_3.png' %}" alt="">
+                                        <h5 class="mb-0">김성호</h5>
+                                        <small>FrontEnd</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_4.png' %}"alt="">
+                                        <h5 class="mb-0">이현빈</h5>
+                                        <small>FrontEnd</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_5.png' %}" alt="">
+                                        <h5 class="mb-0">김유민</h5>
+                                        <small>BackEnd</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_6.png' %}" alt="">
+                                        <h5 class="mb-0">정재훈</h5>
+                                        <small>BackEnd</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 pt-md-4">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="team-item bg-white text-center rounded p-4 pt-0">
+                                        <img class="img-fluid rounded-circle p-4" src="{% static '/img/illust_7.png' %}" alt="">
+                                        <h5 class="mb-0">박준우</h5>
+                                        <small>FrontEnd</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+{% endblock %}
