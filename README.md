@@ -4,3 +4,4 @@ We developed this Project without git. So we was Versioning with FS.
 
 
 So I upload only source code of our project.
+This Repo contains no AI model and testing video and python enviorments that we used.
