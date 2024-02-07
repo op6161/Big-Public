@@ -1,13 +1,26 @@
-import json, re, bcrypt
+import logging, sys
 
 from datetime import datetime
 from django.views import View
 from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from apps.login.models import User
 
 from . import models
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+file_handler = logging.FileHandler('static/adminLog/workLog.log')
+file_handler.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+
+console_handler = logging.StreamHandler(sys.stderr)  # stderr로 변경
+console_handler.setLevel(logging.INFO)
+logger.addHandler(console_handler)
+
 
 def index(req):
     role = User.objects.get(id=req.session['user']).category # 사용자 역할
@@ -26,13 +39,17 @@ def index(req):
 
 
 def noticeView(req, board_id):
-    role = User.objects.get(id=req.session['user']).category # 사용자 역할
-    
-    post = models.Post.objects.get(id=board_id) #filter
-    return render(req, "notice/noticeView.html", {
-        "post": post,
-        "role": role,
-    })
+    try :
+        role = User.objects.get(id=req.session['user']).category # 사용자 역할
+        
+        post = models.Post.objects.get(id=board_id) #filter
+        return render(req, "notice/noticeView.html", {
+            "post": post,
+            "id" : post.id,
+            "role": role,
+        })
+    except ObjectDoesNotExist:
+        return render(req, 'notice/DoesNotExist.html')
 
 
   
@@ -86,6 +103,18 @@ def noticeSearch(request) : # 공지사항 검색
     }
     
     return render(request, 'notice/notice.html', context)
+
+class noticeViewDelete(View): # 공지사항 삭제
+    def post(self, request, board_id) :
+        try:
+            board = models.Post.objects.get(pk=board_id)
+            board.delete()
+            
+            logger.info(f'{board_id} 공지사항 삭제 : {request.session["user"]} [{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}]')
+            return JsonResponse({'message': 'DELETE_SUCCESS'}, status=200)
+        
+        except ObjectDoesNotExist: # 게시글 존재 X
+            return JsonResponse({'message': 'DELETE_FAILED'}, status=404)
 
 
 

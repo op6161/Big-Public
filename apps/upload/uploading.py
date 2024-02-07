@@ -18,6 +18,8 @@ logging.getLogger().propagate = False
 def modelSelection(case):
     """
     load model
+    Returns :
+        model : YOLO(model) : a DL model trained with YOLOv8
     """
     model_name = f'{case}.pt'
     base_dir = os.path.dirname(os.path.abspath(__file__))  # 현재 base 위치 지정
@@ -29,8 +31,8 @@ def modelSelection(case):
 def checkError(request, case):
     """
     checking request error and return err_msg or ai_model
-    params : case : str : a case of video file
-    returns :
+    Args : case : str : a case of video file
+    Returns :
         err_str : dict or False : error msg to print
         model : False or YOLO(model) : a DL model trained with YOLOv8
     """
@@ -58,9 +60,9 @@ def checkError(request, case):
 def namingFile(case):
     """
     Setting file path
-    Params :
+    Args :
         case : str : uploading videofile's case
-    Return :
+    Returns :
         save_path : str : path for saving files
         data_name : str : name of videoLog file
     """
@@ -77,7 +79,7 @@ def namingFile(case):
 def setLogDirectory():
     """
     Setting log file path
-    return :
+    Returns :
         log_directory : str : to save log directory by this project
     """
     log_directory = 'log/'
@@ -89,9 +91,9 @@ def setLogDirectory():
 def setVideo(video):
     """
     Setting function values by the video file
-    Params :
+    Args :
         video : file : uploaded video file
-    return :
+    Returns :
         video_capture : cv2.VideoCapture
         frame_height : int : video_capture frame height
         frame_width : int : video_capture frame width
@@ -114,12 +116,12 @@ def setVideo(video):
 def classLogging(class_counts, class1_name, class2_name, class3_name, frame_in_class1, frame_in_class2, frame_in_class3, class1, class2, class3, normalize_check_size):
     """
     Setting the logging
-    Params :
+    Args :
         class_counts :  :
         class_names(1,2,3) :  :
         frame_in_class(1,2,3) :  :
         class(1,2,3) :  :
-    returns :
+    Returns :
         class(1,2,3) :  :
         frame_in_class(1,2,3) :  :
     """
@@ -148,7 +150,7 @@ def classLogging(class_counts, class1_name, class2_name, class3_name, frame_in_c
 def excuteLogging(class_counts, case, text_log_path, now_time, frame_current):
     """
     Logging
-    Params :
+    Args :
         class_counts : list or dict : if case is the human, this value's type must be dictionary
         case : string
         text_log_path : str : saving path
@@ -169,8 +171,8 @@ def excuteLogging(class_counts, case, text_log_path, now_time, frame_current):
 def classNameSet(case):
     """
     setting class names by case
-    Params : case : string : video file's case
-    return :
+    Args : case : string : video file's case
+    Returns :
         class 1,2,3 : deque : the value for checking video accuracy
         class1,2,3_name : str : class's name
         normalize_check_size : int :
@@ -217,7 +219,7 @@ def predictSelectedArea(frame, model, frame_size, frame_width, frame_height, poi
     if the case is 'human' this function active instead of predictOrdinary
     set the polygon in the video frame by vertex points
     And find only objects inside the polygon
-    Params :
+    Args :
         frame : video_capture.read() : video frames
         model : YOLO(model) : a DL model trained with YOLOv8
         frame_size,frame_width,frame_heights : int : info of video file
@@ -264,10 +266,10 @@ def predictSelectedArea(frame, model, frame_size, frame_width, frame_height, poi
 def predictOrdinary(frame, model):
     """
     predict the classes by video
-    Params :
+    Args :
         frame : video_capture.read() : video frames
         model : YOLO(model) : a DL model trained with YOLOv8
-    Return :
+    Returns :
         results : model.predict() : model prediction results
         frame_predicted : video_capture.read() : video frame with found objects
         class_counts : list : found class list
@@ -286,7 +288,7 @@ def genFrames(video, model, case):
     """
     main function uploading.py
     Generate frames that display objects and logging objects detection to save
-    Params :
+    Args :
         video : video file : uploaded video file
         model : YOLO(model) : a DL model trained with YOLOv8
         case : str : a case of uploaded video file

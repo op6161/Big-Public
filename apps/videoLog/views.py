@@ -33,7 +33,9 @@ def videoLog(request, pathes=''):
                                 fps = tt[2]
                                 event = tt[3]
                                 texts.append({'day':day,'event':event,'local':time ,'fps':round(int(fps)/24)})
-
+            else :
+                texts = []
+                
             return render(request, 'videoLog/videoLogPlayer.html', { 'folder_path' : folder_path, 'content' : texts})
               
 

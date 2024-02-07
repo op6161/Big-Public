@@ -48,3 +48,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('notice-write').addEventListener('submit', handleFormSubmit);
 
 });
+

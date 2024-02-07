@@ -78,17 +78,21 @@ def workLogWriteSubmit(request) : # 작업 일지 작성 로직
     
     
 def workLogView(request, board_id) : # 게시글 클릭 시
-    board = models.WorkLog.objects.get(pk=board_id)
-    role = User.objects.get(id=request.session['user']).category
-    login_user = request.session['user']
-
-    context = { 
-        'board': board,
-        'role': role, # 로그인한 유저의 역할
-        'login_user': int(login_user), # 로그인 id
-    }
+    try:
+        board = models.WorkLog.objects.get(pk=board_id)
+        role = User.objects.get(id=request.session['user']).category
+        login_user = request.session['user']
         
-    return render(request, 'workLog/workLogView.html', context)
+        context = {
+            'board': board,
+            'role': role,
+            'login_user': int(login_user),
+        }
+        
+        return render(request, 'workLog/workLogView.html', context)
+    
+    except ObjectDoesNotExist:
+        return render(request, 'workLog/DoesNotExist.html')
    
 
 class workLogViewDelete(View): # 게시글 삭제

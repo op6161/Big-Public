@@ -25,6 +25,9 @@
         <div class="board_view">
             <div class="title">
                 {{ post.title }}
+                {% if role == "관리자" %}
+                    <button class="btn btn-danger" id="delete-btn" data-id="{{ post.id }}" >삭제</button>
+                {% endif %} 
             </div>
             <div class="info">
                 <dl>
@@ -49,4 +52,9 @@
     </div>
 </div>
 <!-- Notice End-->
+{% endblock %}
+
+{% block js %}
+{% load static %}
+    <script src = "{% static 'notice/js/noticeDelete.js' %}"></script>
 {% endblock %}

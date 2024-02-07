@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-mh=_xfbdr^)6@lr9_!209!mrm4mrs5-3!gtrmnjs%*z-eqd_u$"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #배포용
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,7 +43,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-#    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     
     # Big Project MiddleWare
     'apps.sessionManagement.views.CheckSessionExpiryMiddleware', # 세션 매니저
@@ -76,7 +76,8 @@ WSGI_APPLICATION = "Big.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        #"NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
@@ -128,7 +129,6 @@ STATICFILES_DIRS = [
 # 세션
 SESSION_COOKIE_AGE = 3600  # 1시간 => (60분 x 60초)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True # 웹 브라우저 종료 시, 세션 자동 만료
-CHECK_INTERVAL = 10 # 세션 검사 시간
 
 CHANNEL_LAYERS = {
     'default': {

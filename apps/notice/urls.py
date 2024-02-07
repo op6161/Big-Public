@@ -14,4 +14,5 @@ urlpatterns = [
     path('search/', views.noticeSearch, name = 'noticeSearch'), 
     
     path('edit/<int:board_id>/', views.noticeEdit, name = 'noticeEdit'),
+    path('view/delete/<int:board_id>/', views.noticeViewDelete.as_view(), name='noticeViewDelete'), 
 ]
