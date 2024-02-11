@@ -1,14 +1,28 @@
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
 import os
+import json
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+key_file = os.path.join(BASE_DIR, 'secrets.json')
+with open(key_file) as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        err_msg = f"set the {setting} env var"
+        raise ImproperlyConfigured(err_msg)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-mh=_xfbdr^)6@lr9_!209!mrm4mrs5-3!gtrmnjs%*z-eqd_u$"
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
