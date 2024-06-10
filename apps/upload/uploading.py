@@ -319,6 +319,11 @@ def genFrames(video, model, case):
     class1, class2, class3, class1_name, class2_name, class3_name, normalize_check_size = classNameSet(case)
 
     count = 0
+
+    fps_file_path = f"{mvpy_path}{data_name}.fps"
+    with open(fps_file_path, "a") as file:
+        file.write(str(fps))
+
     while video_capture.isOpened():
         count += 1
         frame_in_class1 = 0 # counting class1 from frame
