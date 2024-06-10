@@ -11,8 +11,10 @@ def videoLog(request, pathes=''):
 
     log_file_name = os.path.basename(pathes)
     log_file_name = log_file_name.split(".")[0]
+
+    fps_file_name = 'fps/' + log_file_name + '.fps'
     log_file_name = 'log/' + log_file_name + '.log'
-    fps_file_name = folder_path.split(".")[0]+'.fps'
+    
 
     if os.path.isfile(folder_path):
         _, file_extension = os.path.splitext(folder_path)
@@ -25,9 +27,7 @@ def videoLog(request, pathes=''):
                     fps = int(content)
             else:
                 fps = 24
-            print(fps_file_name)
-            print(folder_path)
-            print(fps)
+
             if os.path.isfile(log_file_name):
                     with open(log_file_name, 'r') as file:
                         content = file.read()

@@ -76,13 +76,19 @@ def namingFile(case):
     return save_path, data_name, mvpy_path
 
 
-def setLogDirectory():
+def setLogDirectory(mode):
     """
     Setting log file path
     Returns :
         log_directory : str : to save log directory by this project
     """
-    log_directory = 'log/'
+    if mode=='log':
+        log_directory = 'log/'
+    elif mode=='fps':
+        log_directory = 'fps/'
+    else:
+        raise "mode err"
+
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
     return log_directory
@@ -295,7 +301,8 @@ def genFrames(video, model, case):
         case : str : a case of uploaded video file
     """
     # preprocessing
-    log_directory = setLogDirectory()
+    log_directory = setLogDirectory('log')
+    fps_directory = setLogDirectory('fps')
     save_path, data_name, mvpy_path = namingFile(case)
     video_capture, frame_height, frame_width, codec, fps, frame_size = setVideo(video)
     flag = 0
@@ -303,16 +310,13 @@ def genFrames(video, model, case):
 
     # log_path(LogFileName) : class-date-number_fps_(file's fps).log
     text_log_path = log_directory + f"{data_name}.log"
-
+    fps_file_path = fps_directory + f"{data_name}.fps"
     # temp video write
     # 실시간처리영상(tempfile) dum dir에 작성
     dummy_path = f"{save_path}/dum/"
     os.makedirs(f"{dummy_path}", exist_ok=True)
-    ######===== 오류발생으로 임시수정
-    output_all_file = f"{mvpy_path}{data_name}.mp4"
-    # mvpy_dum = mvpy_path + 'dum\\'
-    # output_all_file = f"{mvpy_dum}{data_name}.mp4"
-    ######===== 오류발생으로 임시수정
+    mvpy_dum = mvpy_path + 'dum\\'
+    output_all_file = f"{mvpy_dum}{data_name}.mp4"
     all_video_writer = cv2.VideoWriter(output_all_file, codec, fps, frame_size)
 
     # class name set
@@ -320,7 +324,7 @@ def genFrames(video, model, case):
 
     count = 0
 
-    fps_file_path = f"{mvpy_path}{data_name}.fps"
+    # write fps file
     with open(fps_file_path, "a") as file:
         file.write(str(fps))
 
@@ -365,8 +369,6 @@ def genFrames(video, model, case):
     cv2.destroyAllWindows()
     clip = VideoFileClip(output_all_file)
     file_path = f"{mvpy_path}{data_name}.mp4"
-    ######===== 오류발생으로 임시수정
-    # clip.write_videofile(f"{file_path}", codec="libx264", fps=fps)
-    # shutil.rmtree(dummy_path, ignore_errors=True) # delete dum
-    ######===== 오류발생으로 임시수정
+    clip.write_videofile(f"{file_path}", codec="libx264", fps=fps)
+    shutil.rmtree(dummy_path, ignore_errors=True) # delete dum
     #print('debug')
