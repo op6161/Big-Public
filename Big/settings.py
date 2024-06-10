@@ -5,6 +5,7 @@ import json
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 key_file = os.path.join(BASE_DIR, 'secrets.json')
 with open(key_file) as f:
     secrets = json.loads(f.read())
@@ -25,7 +26,7 @@ def get_secret(setting, secrets=secrets):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -139,6 +140,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_URL = "static/"
 STATICFILES_DIRS = [ 
     os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT=BASE_DIR/'staticfiles'
 
 # 세션
 SESSION_COOKIE_AGE = 3600  # 1시간 => (60분 x 60초)

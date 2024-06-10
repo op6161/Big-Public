@@ -277,7 +277,8 @@ def predictOrdinary(frame, model):
 
     class_counts = [0]
     results = model.predict(frame, verbose=False, conf=0.7)[0]  # prediction conf 70%
-    frame_predicted = results.plot(prob=False, conf=False)
+    frame_predicted = results.plot(conf=False)
+    # frame_predicted = results.plot(prob=False, conf=False)
     arr = results.boxes.cls.cpu().numpy()
     if len(arr) > 0:
         class_counts = np.vectorize(results.names.get)(arr)
@@ -340,7 +341,7 @@ def genFrames(video, model, case):
 
         # logging
         if (frame_in_class1 == class1_name) or (frame_in_class2 == class2_name) or (frame_in_class3 == class3_name) and (flag == 0):
-            flag = 1
+            # flag = 1
             excuteLogging(class_counts, case, text_log_path, now_time, frame_current)
 
         all_video_writer.write(frame_predicted)
