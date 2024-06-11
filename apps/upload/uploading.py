@@ -12,6 +12,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 from collections import Counter, deque
 from moviepy.editor import *
+
 logging.getLogger().propagate = False
 
 
@@ -108,10 +109,12 @@ def setVideo(video):
         frame_size : int : video frame size
     """
 
-    video_capture = cv2.VideoCapture(video.temporary_file_path())
+    # video_capture = cv2.VideoCapture(video.temporary_file_path())
+    video_capture = cv2.VideoCapture(video)
     frame_height = int(video_capture.get(4))
     frame_width = int(video_capture.get(3))
-    videoMetaData = VideoFileClip(video.temporary_file_path())
+    videoMetaData = VideoFileClip(video)
+    #videoMetaData = VideoFileClip(video.temporary_file_path())
     codec = cv2.VideoWriter_fourcc(*'mp4v')
     fps = int(video_capture.get(cv2.CAP_PROP_FPS))
     frame_size = videoMetaData.size
@@ -291,7 +294,7 @@ def predictOrdinary(frame, model):
     return results, frame_predicted, class_counts
 
 
-def genFrames(video, model, case):
+def genFrames(request, video, model, case):
     """
     main function uploading.py
     Generate frames that display objects and logging objects detection to save
@@ -371,4 +374,9 @@ def genFrames(video, model, case):
     file_path = f"{mvpy_path}{data_name}.mp4"
     clip.write_videofile(f"{file_path}", codec="libx264", fps=fps)
     shutil.rmtree(dummy_path, ignore_errors=True) # delete dum
+
+    # dummy data use to redirect after video-stream
+    yield (b'--frame\r\n'
+           b'Content-Type: text/plain\r\n\r\n'
+           b'end_of_stream\r\n\r\n')
     #print('debug')

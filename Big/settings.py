@@ -138,9 +138,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # 빅프로젝트 설정 --------------------------------------------
 # 정적파일 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [ 
-    os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT=BASE_DIR/'staticfiles'
+# MEDIA_URL = "media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 # 세션
 SESSION_COOKIE_AGE = 3600  # 1시간 => (60분 x 60초)

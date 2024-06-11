@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>동영상 확인</title>
+</head>
+<body>
+    <h1>Stream video</h1>
+    <img id="videoFrame" />
+    <script>
+        const videoFrame = document.getElementById('videoFrame');
+        const streamUrl = "{% url 'streamVideo' video=video case=case %}";
+        
+        function checkEndOfStream() {
+            fetch(streamUrl)
+                .then(response => response.text())
+                .then(data => {
+                    if (data.includes('end_of_stream')) {
+                        const nextPageUrl = '{% url "uploadRedirect" case %}';
+                        window.location.href = nextPageUrl;
+                    } else {
+                        videoFrame.src = streamUrl + '&t=' + new Date().getTime();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const nextPageUrl = '{% url "uploadRedirect" case %}';
+                    window.location.href = nextPageUrl;
+                });
+        }
+
+        videoFrame.onload = checkEndOfStream;
+        videoFrame.onerror = checkEndOfStream;
+        videoFrame.src = streamUrl;
+    </script>
+</body>
+</html>
