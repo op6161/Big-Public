@@ -108,13 +108,10 @@ def setVideo(video):
         fps : int : video fps
         frame_size : int : video frame size
     """
-
-    # video_capture = cv2.VideoCapture(video.temporary_file_path())
     video_capture = cv2.VideoCapture(video)
     frame_height = int(video_capture.get(4))
     frame_width = int(video_capture.get(3))
     videoMetaData = VideoFileClip(video)
-    #videoMetaData = VideoFileClip(video.temporary_file_path())
     codec = cv2.VideoWriter_fourcc(*'mp4v')
     fps = int(video_capture.get(cv2.CAP_PROP_FPS))
     frame_size = videoMetaData.size
@@ -186,8 +183,6 @@ def classNameSet(case):
         class1,2,3_name : str : class's name
         normalize_check_size : int :
     """
-
-    # default set
     normalize_check_size = 3
     class1_name = 0
     class2_name = 0
@@ -243,7 +238,7 @@ def predictSelectedArea(frame, model, frame_size, frame_width, frame_height, poi
 
     frame_predicted = frame.copy()
 
-    # draw polygon with setting from vertex points
+    #----- draw polygon with setting from vertex points -----#
     resized_points = []
     for point in points:
         x = int(point[0] * frame_size[0] / frame_width)
@@ -303,33 +298,27 @@ def genFrames(request, video, model, case):
         model : YOLO(model) : a DL model trained with YOLOv8
         case : str : a case of uploaded video file
     """
-    # preprocessing
+    #------ processing video meta data ------#
     log_directory = setLogDirectory('log')
     fps_directory = setLogDirectory('fps')
     save_path, data_name, mvpy_path = namingFile(case)
     video_capture, frame_height, frame_width, codec, fps, frame_size = setVideo(video)
     flag = 0
     frame_current = 0
-
-    # log_path(LogFileName) : class-date-number_fps_(file's fps).log
     text_log_path = log_directory + f"{data_name}.log"
     fps_file_path = fps_directory + f"{data_name}.fps"
-    # temp video write
-    # 실시간처리영상(tempfile) dum dir에 작성
+    with open(fps_file_path, "w") as file:
+        file.write(str(fps))
+    #------ video stream setting ------#
     dummy_path = f"{save_path}/dum/"
     os.makedirs(f"{dummy_path}", exist_ok=True)
     mvpy_dum = mvpy_path + 'dum\\'
     output_all_file = f"{mvpy_dum}{data_name}.mp4"
     all_video_writer = cv2.VideoWriter(output_all_file, codec, fps, frame_size)
 
-    # class name set
+    #------ AI model setting ------#
     class1, class2, class3, class1_name, class2_name, class3_name, normalize_check_size = classNameSet(case)
-
     count = 0
-
-    # write fps file
-    with open(fps_file_path, "a") as file:
-        file.write(str(fps))
 
     while video_capture.isOpened():
         count += 1
@@ -337,23 +326,23 @@ def genFrames(request, video, model, case):
         frame_in_class2 = 0
         frame_in_class3 = 0
         now_time = datetime.now()
-        ret, frame = video_capture.read()  # 영상 프레임 읽기
-        if not ret:  # 영상 재생이 안될 경우 break
+        
+        ret, frame = video_capture.read() # read video frame
+        if not ret:  # if not readed video
             break
+
         frame = cv2.resize(frame, frame_size)
 
-        # predict & frame processing
+        #------ AI predict ------#
         if case == 'human':
             results, frame_predicted, class_counts = predictSelectedArea(frame, model, frame_size, frame_width, frame_height)
         else:
             results, frame_predicted, class_counts = predictOrdinary(frame, model)
 
-        ################## logging #########################
+        #------ framing/logging ------#
         class1, class2, class3, frame_in_class1, frame_in_class2, frame_in_class3 = classLogging(class_counts, class1_name, class2_name, class3_name, frame_in_class1, frame_in_class2, frame_in_class3, class1, class2, class3, normalize_check_size)
 
-        # logging
         if (frame_in_class1 == class1_name) or (frame_in_class2 == class2_name) or (frame_in_class3 == class3_name) and (flag == 0):
-            # flag = 1
             excuteLogging(class_counts, case, text_log_path, now_time, frame_current)
 
         all_video_writer.write(frame_predicted)
@@ -361,22 +350,25 @@ def genFrames(request, video, model, case):
         _, jpeg_frame = cv2.imencode('.jpg', frame_predicted)  # cv2.imshow가 안되기 때문에 대체하였음
         frame_bytes = jpeg_frame.tobytes()
 
+        #------ send frame data to client ------#
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n'
                + frame_bytes + b'\r\n\r\n')
 
         frame_current += 1
 
+    #------ send stream end data to client ------#
+    yield (b'--frame\r\n'
+        b'Content-Type: text/plain\r\n\r\n'
+        b'end_of_stream\r\n\r\n')
+    
+    #------ release process ------#
     all_video_writer.release()
     video_capture.release()
     cv2.destroyAllWindows()
+
+    #------ save video to server ------#
     clip = VideoFileClip(output_all_file)
     file_path = f"{mvpy_path}{data_name}.mp4"
     clip.write_videofile(f"{file_path}", codec="libx264", fps=fps)
-    shutil.rmtree(dummy_path, ignore_errors=True) # delete dum
-
-    # dummy data use to redirect after video-stream
-    yield (b'--frame\r\n'
-           b'Content-Type: text/plain\r\n\r\n'
-           b'end_of_stream\r\n\r\n')
-    #print('debug')
+    shutil.rmtree(dummy_path, ignore_errors=True)
