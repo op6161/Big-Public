@@ -39,16 +39,45 @@
 
 ### 프로젝트 목표
 화재 재난 감지(시설내부)
-외부 침입자 감지(시설외부)
-작업자 안전 관리(작업자)
+지정된 영역 내 외부 침입자 감지(시설외부)
+작업자 안전사고 감지 및 작업상황 관리(작업자)
 
 ### 프로젝트 시연
-회원가입
-공지사항
-작업로그
-영상로그
-업로드
-세션
+#### 작업자 회원가입
+- 아이디 중복 검사
+- 패스워드 2차검증
+[![Join](http://img.youtube.com/vi/Kylr1ejgyyc/0.jpg)]
+(https://youtu.be/Kylr1ejgyyc)
+
+#### 관리자 회원가입 및 공지사항 작성
+- 관리자 회원가입
+- 관리자는 공지사항 글 작성 가능
+[![Join](http://img.youtube.com/vi/KKPYNn4maaE/0.jpg)]
+(https://youtu.be/KKPYNn4maaE)
+
+#### 작업로그
+- 작업자는 작업로그를 작성할 수 있음
+- 관리자는 작성된 작업을 승인할 수 있음
+[![Join](http://img.youtube.com/vi/Tbg_5vxUD9Y/0.jpg)]
+(https://youtu.be/Tbg_5vxUD9Y)
+
+#### 업로드
+- 동영상을 업로드
+- 업로드 후 객체탐지 스트리밍 진행
+- 스트리밍 종료 후 업로드 화면으로 돌아감
+[![Join](http://img.youtube.com/vi/iqDxCqaI4KQ/0.jpg)]
+(https://youtu.be/iqDxCqaI4KQ)
+
+#### 영상로그
+- 업로드된 동영상의 객체탐지내역을 볼 수 있음
+[![Join](http://img.youtube.com/vi/XhBbbAUjqqQ/0.jpg)]
+(https://youtu.be/XhBbbAUjqqQ)
+
+#### 세션
+- 로그인 후 30분 이후에는 세션이 만료되어 재로그인이 필요함
+
+
+#### [테스트 영상의 원본](https://www.youtube.com/watch?v=AXtarXhbbSk)
 
 ---
 # 修正点
@@ -56,7 +85,7 @@
 ## 1. 映像アップロード (apps/upload)
 ##### [기존views.py](https://github.com/op6161/Big-team-archive/blob/main/apps/upload/views.py) 
 ##### [수정views.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/views.py) [uploading.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/uploading.py)
-django는 views.py 안에 모든 로직을 포함하도록 권장하지만, 코드의 가시성을 위해 분리한 상태입니다.
+코드의 가시성을 위해 view코드와 로직 코드를 분리하였습니다.
 
 중복되는 코드를 함수화하고 분리하였습니다.
 
@@ -77,4 +106,3 @@ django는 views.py 안에 모든 로직을 포함하도록 권장하지만, 코�
 > [(team) line.35    texts.append({'day':day,'event':event,'local':time ,'fps':round(int(fps)/24)})](https://github.com/op6161/Big-team-archive/blob/main/apps/videoLog/views.py)
 
 > [(this) line.44    texts.append({'day':day,'event':event,'local':time ,'fps':round(int(frame)/fps)})](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/videoLog/views.py)
-
