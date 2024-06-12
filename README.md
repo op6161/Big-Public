@@ -1,12 +1,17 @@
 # [以前のプロジェクト](https://github.com/op6161/Big-team-archive/tree/main)
-# [AIモデル ダウンロード](https://drive.google.com/file/d/1cClbhm3ddwfMYdL8EkUGavx2StlfzgEG/view?usp=sharing)
+# [AIモデルダウンロード](https://drive.google.com/file/d/1cClbhm3ddwfMYdL8EkUGavx2StlfzgEG/view?usp=sharing)
 > repo/apps/upload/model/*.pt
 ---
+> Python 3.10
+
+> $pip install -r requirements.txt
+
+> python manage.py runserver
 # 無人施設(電気通信交換局舍)安全管理ウェブ
 
 ## このプロジェクトは教育したチームプロジェクト以後、個人的な学習目的と、個人的に惜しい点を補完したプロジェクトです。
 
-## 既存のプロジェクトのリリース ファイルしか残っていないため、以前のバージョン管理はありません。
+## 以前のプロジェクトのリリースファイルしか残っていないため、以前のバージョン管理はありません。
 
 ## 私はバックエンド、AI開発補助を担当しました。
 
@@ -52,17 +57,24 @@
 - ID重複検査
 - パスワード二次検証
 
+<span style="color:gray">youtube</span>
+
 [![Join](http://img.youtube.com/vi/Kylr1ejgyyc/0.jpg)](https://youtu.be/Kylr1ejgyyc)
+
 
 ### 管理者の会員登録・お知らせ作成
 - 管理者会員登録
 - 管理者はお知らせ文を作成可能
+
+<span style="color:gray">youtube</span>
 
 [![Manager](http://img.youtube.com/vi/KKPYNn4maaE/0.jpg)](https://youtu.be/KKPYNn4maaE)
 
 ### 作業日誌
 - 作業者は作業日誌を作成できる
 - 管理者は作成された作業を承認することができる
+
+<span style="color:gray">youtube</span>
 
 [![Worklog](http://img.youtube.com/vi/Tbg_5vxUD9Y/0.jpg)](https://youtu.be/Tbg_5vxUD9Y)
 
@@ -71,16 +83,23 @@
 - アップロード後、AIオブジェクトを探知・映像ストリーミング
 - ストリーミング終了後、アップロードに戻る
 
+<span style="color:gray">youtube</span>
+
 [![Upload](http://img.youtube.com/vi/iqDxCqaI4KQ/0.jpg)](https://youtu.be/iqDxCqaI4KQ)
 
 ### 映像ログ
 - アップロードされた動画のオブジェクト探知内訳を見ることができる
+
+<span style="color:gray">youtube</span>
 
 [![Vlog](http://img.youtube.com/vi/XhBbbAUjqqQ/0.jpg)](https://youtu.be/XhBbbAUjqqQ)
 
 ### セッション
 - ログイン後30分以降はセッションが満了し、再ログインが必要
 
+<span style="color:gray">image</span>
+
+![session](./readme_img_session.png)
 
 ##### [テスト映像の原本](https://www.youtube.com/watch?v=AXtarXhbbSk)
 
