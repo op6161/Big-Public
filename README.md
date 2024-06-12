@@ -46,32 +46,27 @@
 #### 작업자 회원가입
 - 아이디 중복 검사
 - 패스워드 2차검증
-[![Join](http://img.youtube.com/vi/Kylr1ejgyyc/0.jpg)]
-(https://youtu.be/Kylr1ejgyyc)
+[![Join](http://img.youtube.com/vi/Kylr1ejgyyc/0.jpg)](https://youtu.be/Kylr1ejgyyc)
 
 #### 관리자 회원가입 및 공지사항 작성
 - 관리자 회원가입
 - 관리자는 공지사항 글 작성 가능
-[![Join](http://img.youtube.com/vi/KKPYNn4maaE/0.jpg)]
-(https://youtu.be/KKPYNn4maaE)
+[![Manager](http://img.youtube.com/vi/KKPYNn4maaE/0.jpg)](https://youtu.be/KKPYNn4maaE)
 
 #### 작업로그
 - 작업자는 작업로그를 작성할 수 있음
 - 관리자는 작성된 작업을 승인할 수 있음
-[![Join](http://img.youtube.com/vi/Tbg_5vxUD9Y/0.jpg)]
-(https://youtu.be/Tbg_5vxUD9Y)
+[![Worklog](http://img.youtube.com/vi/Tbg_5vxUD9Y/0.jpg)](https://youtu.be/Tbg_5vxUD9Y)
 
 #### 업로드
 - 동영상을 업로드
 - 업로드 후 객체탐지 스트리밍 진행
 - 스트리밍 종료 후 업로드 화면으로 돌아감
-[![Join](http://img.youtube.com/vi/iqDxCqaI4KQ/0.jpg)]
-(https://youtu.be/iqDxCqaI4KQ)
+[![Upload](http://img.youtube.com/vi/iqDxCqaI4KQ/0.jpg)](https://youtu.be/iqDxCqaI4KQ)
 
 #### 영상로그
 - 업로드된 동영상의 객체탐지내역을 볼 수 있음
-[![Join](http://img.youtube.com/vi/XhBbbAUjqqQ/0.jpg)]
-(https://youtu.be/XhBbbAUjqqQ)
+[![Vlog](http://img.youtube.com/vi/XhBbbAUjqqQ/0.jpg)](https://youtu.be/XhBbbAUjqqQ)
 
 #### 세션
 - 로그인 후 30분 이후에는 세션이 만료되어 재로그인이 필요함
