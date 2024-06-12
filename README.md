@@ -1,14 +1,14 @@
-# [既存のプロジェクト](https://github.com/op6161/Big-team-archive/tree/main)
+# [以前のプロジェクト](https://github.com/op6161/Big-team-archive/tree/main)
 # [AIモデル ダウンロード](https://drive.google.com/file/d/1cClbhm3ddwfMYdL8EkUGavx2StlfzgEG/view?usp=sharing)
 > repo/apps/upload/model/*.pt
 ---
+# 無人施設(電気通信交換局舍)安全管理ウェブ
+
 ## このプロジェクトは教育したチームプロジェクト以後、個人的な学習目的と、個人的に惜しい点を補完したプロジェクトです。
 
 ## 既存のプロジェクトのリリース ファイルしか残っていないため、以前のバージョン管理はありません。
 
 ## 私はバックエンド、AI開発補助を担当しました。
-
----
 
 <a href="https://www.python.org/">
     <img alt="Python" src ="https://img.shields.io/badge/Python-3776AB.svg?&style=for-the-badge&logo=Python&logoColor=white"/>
@@ -31,73 +31,93 @@
 </a>
 
 ---
-# 프로젝트에 대해서
-### (Telecommunicaionts switching station, 분기국사)
+# プロジェクトについて
+### 「分岐局舍」とは？ (Telecommunicaionts switching station)
+電気通信役務を提供する施設の維持のための建物
 
-### 프로젝트를 진행한 이유
-센서의 오작동시 발생하는 인적 자원 낭비를 방지
 
-### 프로젝트 목표
-화재 재난 감지(시설내부)
-지정된 영역 내 외부 침입자 감지(시설외부)
-작업자 안전사고 감지 및 작업상황 관리(작업자)
+### プロジェクト進行理由
+- センサー誤動作率が高い・センサー作動時、作業者の出動が必須
+- 人的資源の浪費
 
-### 프로젝트 시연
-#### 작업자 회원가입
-- 아이디 중복 검사
-- 패스워드 2차검증
+### プロジェクト目標
+- 指定された領域内の外部からの侵入者の検知(施設外部)(국사외부)
+- 火災検知(施設内部)(국사내부)
+- 作業者の安全事故の感知・作業服着用管理(作業者)(작업자 안전)
+
+---
+
+# 試演映像
+### 作業者の会員登録
+- ID重複検査
+- パスワード二次検証
+
 [![Join](http://img.youtube.com/vi/Kylr1ejgyyc/0.jpg)](https://youtu.be/Kylr1ejgyyc)
 
-#### 관리자 회원가입 및 공지사항 작성
-- 관리자 회원가입
-- 관리자는 공지사항 글 작성 가능
+### 管理者の会員登録・お知らせ作成
+- 管理者会員登録
+- 管理者はお知らせ文を作成可能
+
 [![Manager](http://img.youtube.com/vi/KKPYNn4maaE/0.jpg)](https://youtu.be/KKPYNn4maaE)
 
-#### 작업로그
-- 작업자는 작업로그를 작성할 수 있음
-- 관리자는 작성된 작업을 승인할 수 있음
+### 作業日誌
+- 作業者は作業日誌を作成できる
+- 管理者は作成された作業を承認することができる
+
 [![Worklog](http://img.youtube.com/vi/Tbg_5vxUD9Y/0.jpg)](https://youtu.be/Tbg_5vxUD9Y)
 
-#### 업로드
-- 동영상을 업로드
-- 업로드 후 객체탐지 스트리밍 진행
-- 스트리밍 종료 후 업로드 화면으로 돌아감
+### 動画アップロード
+- 動画をアップロード
+- アップロード後、AIオブジェクトを探知・映像ストリーミング
+- ストリーミング終了後、アップロードに戻る
+
 [![Upload](http://img.youtube.com/vi/iqDxCqaI4KQ/0.jpg)](https://youtu.be/iqDxCqaI4KQ)
 
-#### 영상로그
-- 업로드된 동영상의 객체탐지내역을 볼 수 있음
+### 映像ログ
+- アップロードされた動画のオブジェクト探知内訳を見ることができる
+
 [![Vlog](http://img.youtube.com/vi/XhBbbAUjqqQ/0.jpg)](https://youtu.be/XhBbbAUjqqQ)
 
-#### 세션
-- 로그인 후 30분 이후에는 세션이 만료되어 재로그인이 필요함
+### セッション
+- ログイン後30分以降はセッションが満了し、再ログインが必要
 
 
-#### [테스트 영상의 원본](https://www.youtube.com/watch?v=AXtarXhbbSk)
+##### [テスト映像の原本](https://www.youtube.com/watch?v=AXtarXhbbSk)
 
 ---
 # 修正点
 
 ## 1. 映像アップロード (apps/upload)
-##### [기존views.py](https://github.com/op6161/Big-team-archive/blob/main/apps/upload/views.py) 
-##### [수정views.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/views.py) [uploading.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/uploading.py)
-코드의 가시성을 위해 view코드와 로직 코드를 분리하였습니다.
+##### [以前views.py](https://github.com/op6161/Big-team-archive/blob/main/apps/upload/views.py) 
+##### [現在views.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/views.py) [uploading.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/uploading.py)
+コードの可視性のために、viewコードとロジックコード(uploading.py)を分離しました。
 
-중복되는 코드를 함수화하고 분리하였습니다.
+同時に、全体的に重複していたコードを関数化して分離しました。
 
-업로딩&스트리밍을 사이트 템플릿에 맞춘 새로운 페이지에서 진행하도록 수정하였습니다.
+アップロード&ストリーミングをサイトテンプレートに合わせた新しいページで行うように修正しました。
 
-업로딩&스트리밍 작업이 끝나면 파일 업로드 페이지로 돌아가도록 수정하였습니다.
+[videoStream.html](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/templates/upload/videoStream.html)
 
-## 2. 영상로그출력(apps/videoLog)
-##### [기존views.py](https://github.com/op6161/Big-team-archive/blob/main/apps/videoLog/views.py)
-##### [수정views.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/videoLog/views.py)
 
-#### FEAT
-후술할 로그 출력 오류를 수정하기 위해서 영상의 메타데이터인 fps파일을 저장하도록 수정하였습니다.
+
+アップロード&ストリーミング作業が終わったら、ファイルアップロードページに戻るように修正しました。
+
+[videoStream.html javascript](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/templates/upload/videoStream.html)
+・
+[views.py line.15](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/views.py)
+
+## 2. 映像ログ(apps/videoLog)
+##### [以前views.py](https://github.com/op6161/Big-team-archive/blob/main/apps/videoLog/views.py)
+##### [現在views.py](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/videoLog/views.py)
+
+
+以前のロジックは、映像メタデータによって正常なログ出力が不可能な場合があるため、メタデータを活用するように修正しました。
+
+[(以前) line.35](https://github.com/op6161/Big-team-archive/blob/main/apps/videoLog/views.py)
+> texts.append({'day':day,'event':event,'local':time ,'fps':round(int(fps)/24)})
+
+[(現在) line.44](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/videoLog/views.py)
+>texts.append({'day':day,'event':event,'local':time ,'fps':round(int(frame)/fps)})
+
+ログ出力エラーを修正するために映像のメタデータであるfpsファイルを保存するように修正しました
 > [apps/upload/uploading.py line.310](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/upload/uploading.py)
-
-#### FIX
-기존의 로직은 영상 메타데이터에 따라서 정상적인 로그 출력이 불가능한 경우가 생길 수 있었기에 메타데이터를 활용하도록 수정하였습니다.
-> [(team) line.35    texts.append({'day':day,'event':event,'local':time ,'fps':round(int(fps)/24)})](https://github.com/op6161/Big-team-archive/blob/main/apps/videoLog/views.py)
-
-> [(this) line.44    texts.append({'day':day,'event':event,'local':time ,'fps':round(int(frame)/fps)})](https://github.com/op6161/Big-Public-Codeonly/blob/main/apps/videoLog/views.py)
