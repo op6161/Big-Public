@@ -11,14 +11,23 @@ def videoLog(request, pathes=''):
 
     log_file_name = os.path.basename(pathes)
     log_file_name = log_file_name.split(".")[0]
+
+    fps_file_name = 'fps/' + log_file_name + '.fps'
     log_file_name = 'log/' + log_file_name + '.log'
     
+
     if os.path.isfile(folder_path):
         _, file_extension = os.path.splitext(folder_path)
         
         content = ''
         if file_extension.lower() == '.mp4':
-            
+            if os.path.isfile(fps_file_name):
+                with open(fps_file_name, 'r') as file:
+                    content = file.read()
+                    fps = int(content)
+            else:
+                fps = 24
+
             if os.path.isfile(log_file_name):
                     with open(log_file_name, 'r') as file:
                         content = file.read()
@@ -30,9 +39,9 @@ def videoLog(request, pathes=''):
                             if len(tt) >= 4 :
                                 day = tt[0]
                                 time = tt[1]
-                                fps = tt[2]
+                                frame = tt[2]
                                 event = tt[3]
-                                texts.append({'day':day,'event':event,'local':time ,'fps':round(int(fps)/24)})
+                                texts.append({'day':day,'event':event,'local':time ,'fps':round(int(frame)/fps)})
             else :
                 texts = []
                 

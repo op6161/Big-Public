@@ -12,4 +12,7 @@ urlpatterns = [
    path('uploadOut/submit', views.uploadOutSubmit, name='uploadOutSubmit'),
    path('uploadIn/submit', views.uploadInSubmit, name='uploadInSubmit'),
    path('uploadWork/submit', views.uploadWorkSubmit, name='uploadWorkSubmit'),
+
+   path('uploadRedirect/<str:case>', views.uploadRedirect, name='uploadRedirect'),
+   path('streamVideo/<str:video>/<str:case>/', views.streamVideo, name='streamVideo'),
 ]

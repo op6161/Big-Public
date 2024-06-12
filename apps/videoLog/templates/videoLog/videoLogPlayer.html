@@ -22,8 +22,7 @@
     <div>
         {% load static %}
         <div class="video-box">
-            <video controls class="viewer">
-                <source src="{% static folder_path %}" type="video/mp4">
+            <video controls class="viewer" src="{% static folder_path %}">
             </video>
             <div class='log-box'>
                 <div class='log-inner'>
