@@ -37,7 +37,7 @@
 
 ---
 # プロジェクトについて
-### 「分岐局舍」とは？ (Telecommunicaionts switching station)
+### 「分岐局舍」とは？ (Telecommunication switching station)
 電気通信役務を提供する施設の維持のための建物
 
 
